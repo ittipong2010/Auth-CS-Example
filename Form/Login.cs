@@ -60,13 +60,6 @@ MessageBox.Show(KeyAuthApp.var("123456")); // retrieve application variable
         {
             KeyAuthApp.init();
 
-            if (!KeyAuthApp.response.success)
-            {
-                MessageBox.Show(KeyAuthApp.response.message);
-                Environment.Exit(0);
-            }
-
-
             if (KeyAuthApp.response.message == "invalidver")
             {
                 if (!string.IsNullOrEmpty(KeyAuthApp.app_data.downloadLink))
@@ -108,7 +101,12 @@ MessageBox.Show(KeyAuthApp.var("123456")); // retrieve application variable
                 Thread.Sleep(2500);
                 Environment.Exit(0);
             }
-
+            
+            if (!KeyAuthApp.response.success)
+            {
+                MessageBox.Show(KeyAuthApp.response.message);
+                Environment.Exit(0);
+            }
             // if(KeyAuthApp.checkblack())
             // {
             //     MessageBox.Show("user is blacklisted");
@@ -117,7 +115,6 @@ MessageBox.Show(KeyAuthApp.var("123456")); // retrieve application variable
             // {
             //     MessageBox.Show("user is not blacklisted");
             // }
-            Thread.Sleep(1500); // handle rate limit
             KeyAuthApp.check();
             siticoneLabel1.Text = $"Current Session Validation Status: {KeyAuthApp.response.success}";
         }
