@@ -687,9 +687,8 @@ namespace KeyAuth
                 switch (response.StatusCode)
                 {
                     case (HttpStatusCode)429: // client hit our rate limit
-                        error("You're connecting too fast to loader, slow down.");
-                        Environment.Exit(0);
-                        return "";
+                        Thread.Sleep(1000);
+                        return req(post_data);
                     default: // site won't resolve. you should use keyauth.uk domain since it's not blocked by any ISPs
                         error("Connection failure. Please try again, or contact us for help.");
                         Environment.Exit(0);
