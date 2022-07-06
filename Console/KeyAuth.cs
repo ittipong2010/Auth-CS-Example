@@ -843,7 +843,7 @@ namespace KeyAuth
             {
                 using (WebClient client = new WebClient())
                 {
-                    var raw_response = client.UploadValues("https://keyauth.win/api/1.0/", post_data);
+                    var raw_response = client.UploadValues("https://www.egobot.tk/api/1.0/", post_data);
 
                     return Encoding.Default.GetString(raw_response);
                 }
